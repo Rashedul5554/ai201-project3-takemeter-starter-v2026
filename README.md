@@ -48,40 +48,78 @@
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+Community: **r/technology**. These six genuine comments come from the discussion [AI can cost more than human workers now](https://www.reddit.com/r/technology/comments/1swsnn6/ai_can_cost_more_than_human_workers_now/). The quoted text was checked against the accessible thread on October 14, 2026. Labels describe how the comments communicate; they do not certify that a commenter’s claims are true.
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
+### `analysis`
 
-### `label_one`
-
-**Definition:**
+**Definition:** A comment that explains a technology-related issue using specific facts, examples, statistics, or clear supporting reasoning.
 
 **Example 1:**
->
+
+> This is what is going to burst the bubble eventually.
+> The technology needs to replace whole teams/workforces to justify the actual cost. And I just don’t think it’s ever going to get there - at least not in its current form.
+
+[Source comment by u/redish6](https://www.reddit.com/r/technology/comments/1swsnn6/comment/oiiiknv/)
+
+**Why this label:** The comment supports its prediction with reasoning about the workforce replacement needed to justify costs.
 
 **Example 2:**
+
+> I assume you mean "wasn't" charging the real cost not "isn't". Netflix has been consistently profitable since 2014.
 >
+> The other companies are profitable as well, though with Uber there is obviously more to it (the cost to society, etc.).
 
-### `label_two`
+[Source comment by u/ireadoldpost](https://www.reddit.com/r/technology/comments/1swsnn6/comment/oiihqsn/)
 
-**Definition:**
+**Why this label:** The comment supports a correction with a specific, checkable claim about profitability since 2014.
+
+### `hot_take`
+
+**Definition:** A comment that expresses a strong opinion or judgment about a technology-related issue without providing substantial supporting evidence.
 
 **Example 1:**
->
+
+> And it's still not being charged at the actual cost.
+
+[Source comment by u/thekk_](https://www.reddit.com/r/technology/comments/1swsnn6/comment/oihxpyl/)
+
+**Why this label:** The comment makes a confident claim about pricing without offering evidence or an explanation.
 
 **Example 2:**
->
+
+> And it's still not doing the work of the people it's supposed to be replacing.
+
+[Source comment by u/GenericFatGuy](https://www.reddit.com/r/technology/comments/1swsnn6/comment/oii167k/)
+
+**Why this label:** The comment makes a confident judgment about performance without offering supporting examples or reasoning.
+
+### `reaction`
+
+**Definition:** A comment that primarily expresses an immediate feeling, such as surprise, excitement, frustration, or concern, about technology-related news or events.
+
+**Example 1:**
+
+> Now comes the part where we throw our heads back and laugh.
+
+[Source comment by u/sgtsausagepants](https://www.reddit.com/r/technology/comments/1swsnn6/comment/oii0eo5/)
+
+**Why this label:** The main purpose is to express amusement in response to the news.
+
+**Example 2:**
+
+> surprise surprise surprise
+
+[Source comment by u/Sorry-Climate-7982](https://www.reddit.com/r/technology/comments/1swsnn6/comment/oii0o1z/)
+
+**Why this label:** The comment expresses sarcastic surprise in response to the news without developing a substantive claim.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `hot_take` and `reaction`.
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**The decision rule to apply consistently:** First, choose `analysis` when a comment explains an issue using specific supporting facts, examples, statistics, or clear reasoning—even when its tone is emotional. A number or fact merely mentioned in passing does not qualify unless it supports the explanation. Otherwise, choose `hot_take` when the main purpose is to assert an unsupported claim or judgment; choose `reaction` when the main purpose is to express an immediate feeling about the news or event. For a comment containing both, identify its central message: a substantive claim about the issue takes `hot_take`, while a brief emotional or sarcastic response without a developed claim takes `reaction`. Do not classify by tone or length alone.
 
+If a comment fits none of these definitions, set it aside for review rather than forcing a label. Use the same rule when selecting examples and later labeling the dataset.
 
 
 ---
