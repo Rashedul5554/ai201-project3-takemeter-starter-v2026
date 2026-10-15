@@ -1,5 +1,7 @@
 # TakeMeter
 
+**Status:** Work in progress. The prepared dataset contains 24 unlabeled entries. Independent labeling, further collection, training, and evaluation are pending.
+
 > ### 👋 Start here
 >
 > **New to this repo? Read [RUNNING.md](RUNNING.md) first** — setup, the
@@ -39,8 +41,7 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
+TakeMeter is a planned text classifier for comments from Reddit’s r/technology community. It will sort comments into `analysis`, `hot_take`, and `reaction` based on the way they communicate. The goal is to distinguish supported explanations, strong judgments without substantial support, and immediate emotional responses. These labels describe communication style; they do not establish whether a claim is true.
 
 
 
@@ -48,7 +49,7 @@
 
 ## Label Taxonomy
 
-Community: **r/technology**. These six genuine comments come from the discussion [AI can cost more than human workers now](https://www.reddit.com/r/technology/comments/1swsnn6/ai_can_cost_more_than_human_workers_now/). The quoted text was checked against the accessible thread on October 14, 2026. Labels describe how the comments communicate; they do not certify that a commenter’s claims are true.
+Community: **r/technology**. These six genuine comments come from the discussion [AI can cost more than human workers now](https://www.reddit.com/r/technology/comments/1swsnn6/ai_can_cost_more_than_human_workers_now/). These taxonomy examples and source links were retained from the existing README; they were not reverified during this update. Labels describe how the comments communicate; they do not certify that a commenter’s claims are true.
 
 ### `analysis`
 
@@ -129,21 +130,36 @@ If a comment fits none of these definitions, set it aside for review rather than
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** I pasted 25 entries from seven r/technology discussions into my project conversation. The prepared `labels.csv` contains 24 entries after excluding one apparent Ozempic advertisement. The discussions concern:
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+- [Bank of America hiring contractors](https://www.reddit.com/r/technology/comments/1x6700d/bank_of_america_hired_1000_contractors_to_patch/)
+- [ICE domestic surveillance](https://www.reddit.com/r/technology/comments/1x5thwn/ice_planning_100_million_nightmare_domestic_spy/)
+- [BlackRock and data-center investment](https://www.reddit.com/r/technology/comments/1x5v797/blackrocks_larry_fink_warns_a_data_center/)
+- [El-Sayed’s AI platform](https://www.reddit.com/r/technology/comments/1x5wce2/elsayed_releasing_his_platform_on_ai_calls_it_an/)
+- [SpaceX limiting Starlink service](https://www.reddit.com/r/technology/comments/1x60zu3/spacex_limits_starlink_service_for_ukraines/)
+- [Ukrainian soldiers’ access to Starlink](https://www.reddit.com/r/technology/comments/1x5nj77/ukrainian_soldiers_in_combat_have_access_to/)
+- [Peter Thiel and AI critics](https://www.reddit.com/r/technology/comments/1x5lcon/peter_thiel_escalates_war_on_ai_critics_accuses/)
+
+The CSV preserves the comment bodies as pasted, including wording, punctuation, links, Markdown, and internal line breaks. Post headings, comment-number markers, and separator whitespace were removed. These texts were recovered from the conversation rather than independently verified on Reddit. Two apparent article excerpts remain included for suitability review: data row 2 (ICE relationships) and data row 16 (Ukrainian soldiers/Starlink). The ICE excerpt starts with “o identify” exactly as pasted. No missing text was reconstructed.
+
+**How I labelled them:** Labeling is pending. Every `label` field is blank and every `note` field contains `cold`. The `cold` marker records the intended labeling workflow; it does not mean independent labeling has already happened. I must assign the first 20 labels myself before training, using the taxonomy above. The final four entries are also unlabeled.
+
+Earlier AI responses offered comment-specific classification guidance, although they did not fill the CSV labels. This assistance is disclosed below. I should check the course’s independence requirement before claiming that examples already discussed with AI qualify as cold labels; fresh comments without AI guidance may be needed for the independent set.
 
 **Counts per label:**
 
-| Label | Count | Share |
+| Label | Assigned count | Share of labeled entries |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `analysis` | 0 | Not yet applicable |
+| `hot_take` | 0 | Not yet applicable |
+| `reaction` | 0 | Not yet applicable |
+| **Total labeled** | **0** | **Not yet applicable** |
+
+There are **24 unlabeled entries**. Label balance cannot be evaluated yet. My collection target is 200 usable labeled comments; the supplied template lists 150 as its minimum. At 24 entries, the dataset is below both. Additional collection is still required, with more needed if excerpts or other unsuitable entries are excluded. The six taxonomy examples above are separate from these 24 entries and are not included in this count.
 
 **Three hard cases**
+
+Pending my own labeling decisions. I will complete the three records below after assigning labels; no decisions or personal reflections have been invented for this draft.
 
 <!-- Any post that made you pause: what it was, which two labels it could have
      been, and what you chose. These are worth more than the easy 190. -->
@@ -175,15 +191,13 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** Pending confirmation from the project notebook; no training run has been supplied.
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** Pending the actual run: epochs, learning rate, batch size, seed, and hardware.
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** Pending the actual run. No changes are claimed.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+**Split sizes:** Pending. Keep the completed dataset in one CSV and let the notebook create the train/validation/test splits. Record the actual split sizes and test counts per label after running it.
 
 
 
@@ -198,19 +212,19 @@ of next unit's variance. -->
      workflow and disclosing it costs you nothing. Not disclosing it is the
      problem. -->
 
-**Moment 1**
+**Moment 1 — Preparing the dataset file**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Prepare `labels.csv` from the Reddit comments I pasted.
+- *What came back:* A CSV with `text,label,note`, containing 24 entries after excluding the apparent advertisement. Labels were left blank and notes set to `cold`. CSV parsing and exact text recovery were checked.
+- *What I changed:* No student edits or completed labels have been reported yet. I still need to review excerpt suitability and complete the independent labeling requirement.
 
-**Moment 2**
+**Moment 2 — Preparing this README**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Prepare my README using the existing template and current project progress.
+- *What came back:* A draft overview, collection details, current counts, AI-use disclosure, and explicit pending fields for work that has not been completed.
+- *What I changed:* Pending my review. I must add my own difficult labeling decisions, actual training settings, results, and reflections before submission.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** AI did not assign labels in the prepared CSV. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. Blank labels do not erase that earlier guidance. I will not claim that AI supplied my independent decisions or that those decisions are complete. Any later AI-assisted labeling must be disclosed and reviewed by me.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
@@ -221,6 +235,8 @@ of next unit's variance. -->
 
 ## Baseline vs. Trained
 
+**Unit 6 status:** Pending. The sections below retain the submission template. No measurements, predictions, agreement decisions, or improvement results have been supplied. Write the prediction before viewing results.
+
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
@@ -228,8 +244,9 @@ of next unit's variance. -->
 |---|---|---|---|
 | Overall accuracy |  |  |  |
 | Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| F1 — `analysis` |  |  |  |
+| F1 — `hot_take` |  |  |  |
+| F1 — `reaction` |  |  |  |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
@@ -261,11 +278,11 @@ of next unit's variance. -->
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | `analysis` | `hot_take` | `reaction` |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| `analysis` |  |  |  |
+| `hot_take` |  |  |  |
+| `reaction` |  |  |  |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
