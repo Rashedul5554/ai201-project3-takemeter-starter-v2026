@@ -1,8 +1,10 @@
 # TakeMeter
 
-**Status:** The repository contains 200 labeled candidate comments, with zero blank labels. Initial training and three-seed evaluation are complete. The notebook, `results.json`, `test_split.csv`, and `results_three_seeds_before.json` were committed and pushed. Final dataset suitability and labeling-workflow review, three personal hard cases, staff agreement and an improvement experiment remain unfinished. The baseline comparison is complete.
+**Unit 5 status:** The repository contains 200 labeled candidate comments, five acceptance criteria, a configured and executed training notebook, and saved `results.json` and `test_split.csv`. The seed-42 run achieved 0.633 accuracy and 0.583 macro F1. These results and the dataset are committed. Before final submission, the boundary-case drafts, labeling provenance, first-20 independence requirement, and suitability of two apparent article excerpts still need review. Training completion does not establish assignment completeness.
 
-**Environment:** Python 3.13.15 in the project `.venv`; PyTorch 2.14.1; Apple Silicon GPU (MPS). The environment check passed 9 checks with 0 failures. The baseline model download and evaluation completed successfully on MPS. The output is stored in `baseline_results.json`.
+**Environment:** Python 3.13.15 in the project `.venv`; PyTorch 2.14.1; Apple Silicon GPU (MPS). The reported environment check passed 9 checks with 0 failures. The saved notebook has no error outputs.
+
+**Scope:** This submission is being prepared for Unit 5. Extra baseline and three-seed work has already been saved; it is retained below as preliminary Unit 6 work and is not required to finish Unit 5. Staff agreement and an improvement experiment are deferred to Unit 6.
 
 **Repository:** [TakeMeter project](https://github.com/Rashedul5554/ai201-project3-takemeter-starter-v2026)
 
@@ -146,11 +148,11 @@ The initial 24 texts retain their pasted wording, Markdown, and internal newline
 - [Ukrainian soldiers’ Starlink access](https://www.reddit.com/r/technology/comments/1x5nj77/ukrainian_soldiers_in_combat_have_access_to/)
 - [Peter Thiel and AI critics](https://www.reddit.com/r/technology/comments/1x5lcon/peter_thiel_escalates_war_on_ai_critics_accuses/)
 
- The convenience sample is concentrated on browsers and data centers and is not representative of all r/technology discussion. Some replies require parent context. The 156-entry batch excluded visible quote blocks, unresolved links, obvious bot notices, removed bodies, normalized duplicates, and bodies shorter than 30 characters. This length filter can underrepresent short reactions. Visible author names do not establish human authorship, and factual claims were not independently verified.
+The convenience sample is concentrated on browsers and data centers and is not representative of all r/technology discussion. Some replies require parent context. The 156-entry batch excluded visible quote blocks, unresolved links, obvious bot notices, removed bodies, normalized duplicates, and bodies shorter than 30 characters. This length filter can underrepresent short reactions. Visible author names do not establish human authorship, and factual claims were not independently verified.
 
 **How I labelled them:** I supplied labels for the initial 24 entries and subsequently submitted labels for the remaining 176. AI matched these labels to the original texts and entered them unchanged. One submitted comment had a stray bracket and quote-escaping differences; the original dataset text was retained. No new classification decisions were made during this transfer. The student-supplied labels were preserved rather than independently validated as correct.
 
-**Labeling-workflow disclosure:** Earlier AI responses offered comment-specific guidance for the original collection. The first-20 independent-labeling requirement still needs verification; it cannot be inferred from a `cold` marker. The original 24 `note` values remain `cold` as previously saved; notes for the later 176 remain blank because the submission did not specify how those labels were produced. These markers need review under the actual course/notebook convention before training. If any submitted labels were generated or suggested by another AI tool, disclose that assistance and the student review performed.
+**Labeling-workflow disclosure:** Earlier AI responses offered comment-specific guidance for the original collection. The first-20 independent-labeling requirement still needs verification; it cannot be inferred from a `cold` marker. The original 24 `note` values remain `cold` as previously saved; notes for the later 176 remain blank because the submission did not specify how those labels were produced. These markers still need review before submission; training has already been completed. If any submitted labels were generated or suggested by another AI tool, disclose that assistance and the student review performed.
 
 **Counts per label in the repository’s validated 200-entry file:**
 
@@ -163,33 +165,45 @@ The initial 24 texts retain their pasted wording, Markdown, and internal newline
 
 All 200 entries have a valid label, and each label is within the planned 20%–45% dataset-balance range. Formatting and normalized-text uniqueness were checked. These checks establish structure and counts, not label correctness. The collection target has been reached in candidate entries. The two apparent article excerpts in original data rows 2 and 16 remain included pending suitability review; replace excluded entries before claiming 200 usable examples. The six taxonomy examples are separate from these 200 records.
 
-**Three hard cases — student completion required**
+**Three boundary-case drafts — student review pending**
 
-I have supplied labels for all 200 entries and reasons for the original 24. I still need to select three cases that I personally found difficult and document the alternative labels considered; no personal reflections have been invented for this draft.
+These cases use previously submitted labels and reasons. AI selected the examples and formulated the alternative-label comparisons; they are not a claim that the student independently considered those alternatives or personally found these exact examples difficult. Confirm or revise the account before submitting it as personal reflection. No dataset labels were changed during this README review.
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
+### Case 1 — data row 4
 
-**1.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+> Honestly given how everything this administration and it's sympathizers have done to date is absolute trash quality execution, I'm not super worried that this garbage can't be wrecked by some armchair hacktivist.
+> I think the part everyone forgets about. We'll be able to FOIA all the ICE employment records soon enough. These mouth-breathers will be papered everywhere.
 
-**2.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+**Possible labels:** `hot_take` or `analysis`.
 
-**3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+**Why the boundary matters:** The supplied reasoning emphasizes sweeping judgments about execution, while acknowledging the explanation about FOIA requests.
+
+**Recorded decision and supplied rationale:** The saved student choice is `hot_take`: the supplied rationale treated the generalized political judgment as dominant. Clear reasoning can still qualify as analysis without citations, so this remains a boundary to review.
+
+### Case 2 — data row 8
+
+> I'm glad to see this happening, though I am sad to see it becoming a partisan issue (EDIT: though it's not entirely a partisan divide, and El-Sayed's opponent has also called for AI regulation which is good). A ban on recursive self improvement would go a LONG way towards slowing things down enough that researchers can try to improve safety. AI should not be building AI.
+> A national ban/pause isn't enough in the long term though, we need real international cooperation between the US and China.
+
+**Possible labels:** `analysis` or `reaction`.
+
+**Why the boundary matters:** The supplied reasoning identifies policy proposals and an argument about slowing recursive improvement, despite expressions of gladness and sadness.
+
+**Recorded decision and supplied rationale:** The saved student choice is `analysis`: the supplied rationale focuses on the explanation for a pause and international cooperation, rather than the emotional wording.
+
+### Case 3 — data row 17
+
+> Starlink being cut, unfortunately, is not a surprise.
+> But, it sounds like the US is intentionally withholding intel about incoming strikes. Intel they USED to provide to Ukraine.
+> That is fucking vile. I know none of us are surprised that Trump is a Russian puppet. But this is, by far, the biggest demonstration of just how deep into their pockets he is.
+> The US administration is now using Ukrainian civilian lives as leverage to act in Russian interests.
+> Americans, for the love of dignity, do your part and VOTE.
+
+**Possible labels:** `reaction` or `hot_take`.
+
+**Why the boundary matters:** The supplied reasoning emphasizes anger and an impassioned plea to vote; the comment also makes substantive political accusations.
+
+**Recorded decision and supplied rationale:** The saved student choice is `reaction`: the supplied rationale treated emotion as dominant. Under the stated rule, emotional language alone is insufficient; the general accusations make hot_take a defensible alternative, so this choice still needs review.
 
 ---
 
@@ -199,7 +213,7 @@ I have supplied labels for all 200 entries and reasons for the original 24. I st
 
 **Base model:** `distilbert-base-uncased`.
 
-**Settings:** 3 epochs, learning rate `2e-5`, batch size 16, maximum input length 128 tokens. Initial seed 42; additional evaluation seeds 7 and 2024. Device: Apple Silicon GPU (MPS); PyTorch 2.14.1.
+**Settings:** 3 epochs, learning rate `2e-5`, batch size 16, maximum input length 128 tokens, seed 42 for the Unit 5 run. Extra Unit 6 runs used seeds 7 and 2024. Device: Apple Silicon GPU (MPS); PyTorch 2.14.1.
 
 **Changes from defaults:** No changes to the listed starter training hyperparameters. The label list was set to `analysis`, `hot_take`, and `reaction`; student identification fields were filled in.
 
@@ -237,13 +251,35 @@ Training and evaluation finished despite warnings about the notebook progress wi
 
 - *What I asked for:* Prepare my README using the existing template and current project progress.
 - *What came back:* A draft overview, collection details, current counts, AI-use disclosure, and explicit pending fields for work that has not been completed.
-- *What I changed:* Pending my review. I must add my own difficult labeling decisions, my own reflections and difficult labeling decisions before submission; verified training settings and results have now been added.
+- *What I changed:* I supplied the dataset labels and ran the notebook. AI added verified settings/results and drafted three boundary-case discussions from my submitted reasons. My review of those discussions and labeling provenance remains pending; AI assistance is not presented as independent student reflection.
 
 **Pre-labelling disclosure:** The initial CSV had blank labels. I later supplied labels for all 200 entries, which AI entered unchanged. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. AI collection assistance and earlier classification guidance are disclosed separately from the labels I submitted. This record does not establish that the first-20 independence requirement has been met. The provenance of any labels generated with another tool still needs to be recorded accurately. Any later AI-assisted labeling must be disclosed and reviewed by me.
 
+## Unit 5 pre-submission checklist
+
+- [x] Community exploration and label taxonomy files are present.
+- [x] Three label definitions, six taxonomy examples, and a boundary rule are documented.
+- [x] Five numeric criteria with reasons are recorded in `criteria.md`.
+- [x] One `labels.csv` contains 200 valid labels with no normalized-text duplicates.
+- [x] No label exceeds the brief’s 70% cap; current shares also meet the project’s stricter 20%–45% target.
+- [x] Initial training completed; `results.json` and `test_split.csv` are tracked in Git.
+- [x] More than four project commits are present.
+- [ ] Review the three AI-drafted boundary cases and make the personal account accurate.
+- [ ] Confirm first-20 independence and accurately document the labeling method in `note` and this README. The current file has 24 `cold` notes and 176 empty notes; this is not evidence of compliance.
+- [ ] Decide whether the apparent article excerpts in data rows 2 and 16 are suitable. If the dataset changes, regenerate affected training results and report that change rather than silently altering the dataset behind existing results.
+- [ ] Verify the inherited taxonomy examples and source links if source verification is required.
+- [ ] Submit the existing repository URL through the course submission page.
+
+The staff answer key, agreement report, baseline comparison, three-seed analysis, and improvement experiment are not Unit 5 prerequisites according to `RUNNING.md`.
+
+---
+
+<details>
+<summary>Unit 6 — extra work already saved; remaining exercises deferred</summary>
+
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
-     Don't fill these in during unit 5.
+     Extra work has been retained for later; it is not a Unit 5 prerequisite.
      ═══════════════════════════════════════════════════════════════════ -->
 
 ---
@@ -454,7 +490,7 @@ learned:** The intended labels separate supported explanations, unsupported judg
        [ ] All five unit 5 sections have real content
        [ ] Label Taxonomy includes the decision rule for your hardest boundary
        [ ] The Dataset includes three hard cases
-       [ ] results.json and test_split.csv committed manually after the notebook writes them
+       [x] results.json and test_split.csv committed manually after the notebook writes them
        [ ] At least four new commits
        [ ] Repository URL submitted — WRITE IT DOWN
 
@@ -480,3 +516,5 @@ learned:** The intended labels separate supported explanations, unsupported judg
 ---
 
 📖 **How to run this project: [RUNNING.md](RUNNING.md)**
+
+</details>
