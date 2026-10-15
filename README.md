@@ -230,9 +230,9 @@ These cases use previously submitted labels and reasons. AI selected the example
 
 Training and evaluation finished despite warnings about the notebook progress widget, newly initialized classification weights, and MPS pinned-memory support. The successful outputs are stored in `results.json` and `test_split.csv`. The test labels contain only 13, 9, and 8 examples respectively, so per-label scores have substantial sampling uncertainty.
 
-### Planned Unit 5 bonus: second training run
+### Unit 5 bonus: completed second training run
 
-**Status:** Declared before implementation; the bonus run has not yet been performed. This declaration will be committed before changing the training configuration.
+**Status:** The experiment was declared in README commit `8cd185c` before implementation. The five-epoch run is complete; the comparison and supporting files are being prepared for commit. This addresses the second-run stretch feature; bonus credit remains subject to instructor review.
 
 **Single change:** Increase `EPOCHS` from 3 to 5 to test whether additional training helps the classifier learn the label boundaries. Improvement is a hypothesis, not a promised result.
 
@@ -243,6 +243,23 @@ Training and evaluation finished despite warnings about the notebook progress wi
 **Planned comparison:** Report original and bonus accuracy, macro F1, and F1 for each label, with differences calculated from unrounded results. Report the actual outcome even if performance worsens. Original scores are accuracy 0.633, macro F1 0.583, analysis F1 0.703, hot_take F1 0.500, and reaction F1 0.545.
 
 **Interpretation:** This is one predeclared comparison, not repeated tuning against the test set. The held-out set has already been evaluated, so disclose that fact and do not present the bonus evaluation as a new untouched test. Do not claim the bonus point until the run, comparison, and repository evidence are complete; grading is determined by the instructor.
+
+
+**Completed comparison — seed 42:** Both evaluations used the exact same 30 test entries in the same order, verified by parsing the saved test CSVs. The original result file is unchanged. The configured training change was epochs from 3 to 5; model, seed, label mapping, learning rate, batch size, max length, and device remain the same. The dataset and split code were retained; no original training-membership file was saved, so identical training/validation membership follows from keeping those inputs and the deterministic split unchanged rather than from a saved-membership comparison.
+
+| Measure | Original: 3 epochs | Bonus: 5 epochs | Difference |
+|---|---|---|---|
+| Overall accuracy | 0.633 | 0.767 | +0.133 |
+| Macro F1 | 0.583 | 0.743 | +0.160 |
+| F1 — `analysis` | 0.703 | 0.812 | +0.110 |
+| F1 — `hot_take` | 0.500 | 0.750 | +0.250 |
+| F1 — `reaction` | 0.545 | 0.667 | +0.121 |
+
+**What changed:** Correct test predictions increased from 19 to 23 out of 30 (+4), an accuracy increase of 13.3 percentage points. Macro F1 increased by 0.160. Hot-take recall increased from 3/9 to 6/9; reaction recall increased from 3/8 to 4/8. Analysis recall remained 13/13, while analysis predictions decreased from 24 to 19, reducing overprediction of that label. Differences above use unrounded metrics.
+
+**Evidence:** `results_original_epochs3.json` and `test_split_original_epochs3.csv` preserve the original run; `results_bonus_epochs5.json` and `test_split_bonus_epochs5.csv` contain the seed-42 bonus evaluation. The executed configuration is in `takemeter.ipynb`. The later three-seed cell also ran and had reused the bonus filename; its three records are preserved separately in `results_three_seeds_bonus_epochs5.json`. The original Unit 6 before-results are retained. This extra run is disclosed rather than presented as part of the single-seed predeclared comparison.
+
+**Limit:** These gains describe one small, previously evaluated split. They do not establish significance, new-thread generalization, or that every three-seed criterion is met. No further test-guided tuning was performed as part of documenting this comparison.
 
 
 ---
