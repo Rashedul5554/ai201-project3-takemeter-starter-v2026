@@ -1,0 +1,184 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.4666666666666667,
+    "f1_macro": 0.45436053902873125,
+    "per_label": {
+      "analysis": {
+        "precision": 0.7,
+        "recall": 0.5384615384615384,
+        "f1": 0.608695652173913,
+        "support": 13
+      },
+      "hot_take": {
+        "precision": 0.3333333333333333,
+        "recall": 0.3333333333333333,
+        "f1": 0.3333333333333333,
+        "support": 9
+      },
+      "reaction": {
+        "precision": 0.36363636363636365,
+        "recall": 0.5,
+        "f1": 0.4210526315789474,
+        "support": 8
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "It isn't going to shit. You just believe the clickbait headlines posted to this sub.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I'm glad to see this happening, though I am sad to see it becoming a partisan issue (EDIT: though it's not entirely a partisan divide, and El-Sayed's opponent has also called for AI regulation which is good). A ban on recursive self improvement would go a LONG way towards slowing things down enough that researchers can try to improve safety. AI should not be building AI.\r\nA national ban/pause isn't enough in the long term though, we need real international cooperation between the US and China.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I think the room beat them into reading it iirc",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "\"Can't be bothered\"\r\n\r\nAnd there we have the problem with basically everything. Consumers could make serious change if they organised en masse, but the unfortunate truth is that 80% of them simply can't be bothered.",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Unless you can't turn it off, like on YouTube.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Good. The bubble is going to explode soon. They won't get anything out of it.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Firefox, the hero we need haha",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I just returned to FF last week and couldn't be happier. Been a while. It's slick. Especially on mobile. It's so much better.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "A conversation I had with my FIL yesterday:\r\n\r\nFIL: you should watch this video from Kevin O'Leary about the market.\r\n\r\nMe watching the first 1 second: you do know this is AI nonsense right?\r\n\r\nFIL: I know it is AI but nowadays all YouTube shows me is AI so I watch it. Anyway, keep watching, Kevin makes some good points.\r\n\r\nMe: but you understand this isn't Kevin O'Leary right? It's an AI video made to look like him.\r\n\r\nFIL: I know it is AI but Kevin makes good points, just watch.\r\nMe: but it isn't Kevin O'Leary. Kevin isn't making any points, it's some AI content farm.\r\n\r\nFIL: I know it's AI, I get it. I can tell from the video it is generated, but Kevin makes some really good points, just watch.\r\n\r\nI did not watch. My FIL is 81 and all he does is complain the liberals are ruining California and we all need to buy more guns and we should buy Gold and Bitcoin. His entire YouTube feed was AI slop.",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "FUCK YES!\r\n\r\nI also want a feature that lets me hurt a techbros' feelings.",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Fibercast. All of our salt water piping is either fibercast, or rotting iron piping waiting to be replaced with fibercast.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "You don't even need reverse osmosis, just heat exchanger loops.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Who is going to pay for the browser if it blocks ads?\r\n\r\nGenuinely\u2026 it\u2019s historically been Google, but if they preload ad blockers they won\u2019t be keen.",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "YouTube having auto translation has nothing to do with Firefox, though?",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Why don't they put them in space instead",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I am gonna guess not.\r\nOne could hope that this would push the many Multi-Trillion-Dollar companies and entire Nation-States to also spend billions towards implementing en-masse cleaning of dirty water sources around the world and generating drinkable water from salty sources.\r\nYou know, all the options which were too expensive and not profitable enough before AI needs.\r\n\r\nEdit-grammar",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Unfun hopefully unrelated fact: Vladimir Putin worked as a KGB officer in the east Germany Stasi.\u00a0[https://commons.wikimedia.org/wiki/File:Putin-Stasi-Ausweis.png](https://commons.wikimedia.org/wiki/File:Putin-Stasi-Ausweis.png)",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Can we please have a device-wide AI off switch, honored universally by all apps and sites?",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Brave is built from Chromium - the Open Source parts of chrome. It's not just Chrome rebranded. Not the same thing.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Turning it off, but not removing it. Still using every piece of info it can steal from you. No word about removing the code that spies on your every move and sells the data to marketers, manipulators, and AI LLEs. Firefox is dead. Nothing will save it.",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Lack of stable democracies around the world. Your data would be fish food within 0.005 seconds of starting a conflict.\r\n\r\nThe main reason they want to do space data centers is that the rubes can't just jerry rig an orbital rocket.",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Honestly given how everything this administration and it's sympathizers have done to date is absolute trash quality execution, I'm not super worried that this garbage can't be wrecked by some armchair hacktivist.\r\nI think the part everyone forgets about. We'll be able to FOIA all the ICE employment records soon enough. These mouth-breathers will be papered everywhere.",
+      "gold": "hot_take",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I worked for a very large corporation that had no issues with people installing ad blockers. I was absolutely baffled the number of people who just surf the web with no ad blocker. I am not embellishing when I say over 4-5 years of helping people at the company I bet there were 400 people I helped and it was a small fraction of people who actually had an ad blocker. So many people just accept or don't know that there is something else even out there.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The Palo Verde nuclear power plant in Arizona is cooled using treated sewage water.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Every browser shoud have this option",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "yeah if its cooled via evaporation towers even though its closed loop it will loose tons of water via evaporation.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It's more expensive to do closed loop and still sucks up water that needs to be periodically replaced.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Cayun wahtur do wahtur things?",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The problem Firefox always had on macOS is that they didn\u2019t implement the UX properly to feel right on multiple levels. I had a bit of an argument with the main guys a very long time ago and they just never got their act together. I guess this is another too little too late for this project.",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "This is a great moment to recommend Kagi search to the masses!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # TakeMeter
 
-**Status:** The repository contains 200 labeled candidate comments, with zero blank labels. Initial training and three-seed evaluation are complete. The notebook, `results.json`, `test_split.csv`, and `results_three_seeds_before.json` were committed and pushed. Final dataset suitability and labeling-workflow review, three personal hard cases, baseline comparison, staff agreement, and an improvement experiment remain unfinished.
+**Status:** The repository contains 200 labeled candidate comments, with zero blank labels. Initial training and three-seed evaluation are complete. The notebook, `results.json`, `test_split.csv`, and `results_three_seeds_before.json` were committed and pushed. Final dataset suitability and labeling-workflow review, three personal hard cases, staff agreement and an improvement experiment remain unfinished. The baseline comparison is complete.
 
-**Environment:** Python 3.13.15 in the project `.venv`; PyTorch 2.14.1; Apple Silicon GPU (MPS). The environment check passed 9 checks with 0 failures. The baseline command has been started and its first-run model download was in progress in the supplied screenshot; no completed baseline result was available when this README was updated.
+**Environment:** Python 3.13.15 in the project `.venv`; PyTorch 2.14.1; Apple Silicon GPU (MPS). The environment check passed 9 checks with 0 failures. The baseline model download and evaluation completed successfully on MPS. The output is stored in `baseline_results.json`.
 
 **Repository:** [TakeMeter project](https://github.com/Rashedul5554/ai201-project3-takemeter-starter-v2026)
 
@@ -250,24 +250,24 @@ Training and evaluation finished despite warnings about the notebook progress wi
 
 ## Baseline vs. Trained
 
-**Unit 6 status:** Three-seed evaluation and the seed-42 confusion matrix are complete. Baseline results, staff agreement, and an improvement run are pending. No student prediction has been supplied; do not reconstruct a prediction after seeing results.
+**Unit 6 status:** Three-seed evaluation and the seed-42 confusion matrix are complete. The baseline comparison is complete; staff agreement and an improvement run are pending. No student prediction has been supplied; do not reconstruct a prediction after seeing results.
 
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy | Pending | 0.633 | Pending |
-| Macro F1 | Pending | 0.583 | Pending |
-| F1 — `analysis` | Pending | 0.703 | Pending |
-| F1 — `hot_take` | Pending | 0.500 | Pending |
-| F1 — `reaction` | Pending | 0.545 | Pending |
+| Overall accuracy | 0.467 | 0.633 | +0.167 |
+| Macro F1 | 0.454 | 0.583 | +0.128 |
+| F1 — `analysis` | 0.609 | 0.703 | +0.094 |
+| F1 — `hot_take` | 0.333 | 0.500 | +0.167 |
+| F1 — `reaction` | 0.421 | 0.545 | +0.124 |
 
 **What I predicted before I looked:** No prediction has been provided for this record. If one was recorded before viewing results, insert that original prediction; otherwise disclose that it was not recorded.
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
-**What the gap actually means:** Pending the baseline evaluation on the same 30 held-out entries.
+**What the gap actually means:** The zero-shot baseline (`facebook/bart-large-mnli`) used the definitions in `label_definitions.txt` and the same 30 held-out comments as the seed-42 trained model. The trained model got 19/30 correct versus 14/30 for the baseline: five additional correct classifications, a 16.7-percentage-point accuracy gain, and a macro-F1 gain of 0.128. Differences are calculated before rounding. All three per-label F1 values are higher for the trained model on this split. This is a benefit on one small held-out set, not proof of a stable improvement across seeds or unseen threads; seed 7 trained accuracy was only 0.433. The trained model still misses the predeclared performance criteria across the three runs.
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 
@@ -429,7 +429,7 @@ Possible contributors include limited training examples, inconsistent boundaries
 
 ## What's Still Broken
 
-The initial runs miss all four performance criteria across the required seeds. They overpredict analysis, and seed 7 fails to predict the other labels entirely. Baseline comparison, staff agreement, and an improvement experiment are still pending; no claim is made that the current model is ready for use.
+The initial runs miss all four performance criteria across the required seeds. They overpredict analysis, and seed 7 fails to predict the other labels entirely. Baseline comparison is complete; staff agreement and an improvement experiment are still pending; no claim is made that the current model is ready for use.
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
