@@ -1,6 +1,10 @@
 # TakeMeter
 
-**Status:** Work in progress. The dataset contains 24 entries with student-submitted labels. Label review, confirmation of the independent-labeling requirement, further collection, training, and evaluation are pending.
+**Status:** A completed 200-entry dataset has been prepared with student-submitted labels. The most recent local check of the repository’s `labels.csv` still showed only 24 entries, so replacement with the completed file and a new count check are pending. Suitability review, labeling-workflow verification, training, and evaluation are also pending.
+
+**Environment check:** The reported `python test.py` run passed 9 checks with 0 failures and 1 warning. Python 3.13.15 and the project virtual environment were active, required packages imported, and PyTorch reported Apple Silicon GPU (MPS) support. The baseline model has not yet been downloaded; the check estimates about 1.6 GB on its first run. Passing these checks confirms the environment, not the dataset or model performance.
+
+**Before the next commit:** Replace the older root `labels.csv` with the completed 200-entry file, confirm 200 rows and zero blank labels, and save this README. The counts below describe the prepared 200-entry file until that local replacement is verified.
 
 > ### 👋 Start here
 >
@@ -49,7 +53,7 @@ TakeMeter is a planned text classifier for comments from Reddit’s r/technology
 
 ## Label Taxonomy
 
-Community: **r/technology**. These six genuine comments come from the discussion [AI can cost more than human workers now](https://www.reddit.com/r/technology/comments/1swsnn6/ai_can_cost_more_than_human_workers_now/). These taxonomy examples and source links were retained from the existing README; they were not reverified during this update. Labels describe how the comments communicate; they do not certify that a commenter’s claims are true.
+Community: **r/technology**. The six taxonomy examples below were supplied as comments from the discussion [AI can cost more than human workers now](https://www.reddit.com/r/technology/comments/1swsnn6/ai_can_cost_more_than_human_workers_now/). These taxonomy examples and source links were retained from the existing README; they were not reverified during this update. Labels describe how the comments communicate; they do not certify that a commenter’s claims are true.
 
 ### `analysis`
 
@@ -130,27 +134,38 @@ If a comment fits none of these definitions, set it aside for review rather than
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:** I pasted 25 entries from seven r/technology discussions into my project conversation. The prepared `labels.csv` contains 24 entries after excluding one apparent Ozempic advertisement. The discussions concern:
+**Where the posts came from:** The initial collection contained 25 pasted entries from seven r/technology discussions. One apparent Ozempic advertisement was removed, leaving 24 entries. AI then collected 20 additional entries from four thread pages and another 156 from six thread pages. The final collection contains 200 distinct candidate texts; these thread groups overlap and should not be added together as unique discussion counts.
 
-- [Bank of America hiring contractors](https://www.reddit.com/r/technology/comments/1x6700d/bank_of_america_hired_1000_contractors_to_patch/)
-- [ICE domestic surveillance](https://www.reddit.com/r/technology/comments/1x5thwn/ice_planning_100_million_nightmare_domestic_spy/)
-- [BlackRock and data-center investment](https://www.reddit.com/r/technology/comments/1x5v797/blackrocks_larry_fink_warns_a_data_center/)
+The initial 24 texts retain their pasted wording, Markdown, and internal newlines after removing entry headings and separator whitespace. The later 176 use accessible indexed Reddit page text; original raw Markdown and whitespace were not available for verification. Source records are in `additional_comment_sources.csv` and `additional_156_sources.csv`. The initial seven source discussions are:
+
+- [Bank of America contractors](https://www.reddit.com/r/technology/comments/1x6700d/bank_of_america_hired_1000_contractors_to_patch/)
+- [ICE surveillance](https://www.reddit.com/r/technology/comments/1x5thwn/ice_planning_100_million_nightmare_domestic_spy/)
+- [BlackRock and data centers](https://www.reddit.com/r/technology/comments/1x5v797/blackrocks_larry_fink_warns_a_data_center/)
 - [El-Sayed’s AI platform](https://www.reddit.com/r/technology/comments/1x5wce2/elsayed_releasing_his_platform_on_ai_calls_it_an/)
-- [SpaceX limiting Starlink service](https://www.reddit.com/r/technology/comments/1x60zu3/spacex_limits_starlink_service_for_ukraines/)
-- [Ukrainian soldiers’ access to Starlink](https://www.reddit.com/r/technology/comments/1x5nj77/ukrainian_soldiers_in_combat_have_access_to/)
+- [SpaceX limiting Starlink](https://www.reddit.com/r/technology/comments/1x60zu3/spacex_limits_starlink_service_for_ukraines/)
+- [Ukrainian soldiers’ Starlink access](https://www.reddit.com/r/technology/comments/1x5nj77/ukrainian_soldiers_in_combat_have_access_to/)
 - [Peter Thiel and AI critics](https://www.reddit.com/r/technology/comments/1x5lcon/peter_thiel_escalates_war_on_ai_critics_accuses/)
 
-The CSV preserves the comment bodies as pasted, including wording, punctuation, links, Markdown, and internal line breaks. Post headings, comment-number markers, and separator whitespace were removed. These texts were recovered from the conversation rather than independently verified on Reddit. Two apparent article excerpts remain included for suitability review: data row 2 (ICE relationships) and data row 16 (Ukrainian soldiers/Starlink). The ICE excerpt starts with “o identify” exactly as pasted. No missing text was reconstructed.
+ The convenience sample is concentrated on browsers and data centers and is not representative of all r/technology discussion. Some replies require parent context. The 156-entry batch excluded visible quote blocks, unresolved links, obvious bot notices, removed bodies, normalized duplicates, and bodies shorter than 30 characters. This length filter can underrepresent short reactions. Visible author names do not establish human authorship, and factual claims were not independently verified.
 
-**How I labelled them:** I supplied a label and reasoning for each of the 24 entries. AI transferred my labels into the CSV without changing my choices or the original full comment text. All notes remain `cold` from the initial preparation; this marker alone does not establish independent labeling. Earlier AI responses provided comment-specific guidance, so compliance with the first-20 independence requirement still needs confirmation. No labels have been independently validated as correct.
+**How I labelled them:** I supplied labels for the initial 24 entries and subsequently submitted labels for the remaining 176. AI matched these labels to the original texts and entered them unchanged. One submitted comment had a stray bracket and quote-escaping differences; the original dataset text was retained. No new classification decisions were made during this transfer. The student-supplied labels were preserved rather than independently validated as correct.
 
-**Current counts:** `analysis`: 8 (33.33%); `hot_take`: 11 (45.83%); `reaction`: 5 (20.83%). Total: 24 labeled entries. The current `hot_take` share exceeds the 45% maximum in the planned acceptance criteria. Do not change labels merely to meet a quota; collect additional appropriate examples and apply the taxonomy consistently.
+**Labeling-workflow disclosure:** Earlier AI responses offered comment-specific guidance for the original collection. The first-20 independent-labeling requirement still needs verification; it cannot be inferred from a `cold` marker. The original 24 `note` values remain `cold` as previously saved; notes for the later 176 remain blank because the submission did not specify how those labels were produced. These markers need review under the actual course/notebook convention before training. If any submitted labels were generated or suggested by another AI tool, disclose that assistance and the student review performed.
 
-The collection target remains 200 usable labeled comments; the supplied template lists 150 as its minimum. Both apparent article excerpts remain included pending suitability review. The six taxonomy examples are separate from these 24 entries.
+**Counts per label in the prepared 200-entry file:**
 
-**Three hard cases**
+| Label | Count | Share |
+|---|---|---|
+| `analysis` | 83 | 41.5% |
+| `hot_take` | 62 | 31.0% |
+| `reaction` | 55 | 27.5% |
+| **Total** | **200** | **100%** |
 
-I have supplied initial labels and reasons. I still need to select three cases that I personally found difficult and document the alternative labels considered; no personal reflections have been invented for this draft.
+All 200 entries have a valid label, and each label is within the planned 20%–45% dataset-balance range. Formatting and normalized-text uniqueness were checked. These checks establish structure and counts, not label correctness. The collection target has been reached in candidate entries. The two apparent article excerpts in original data rows 2 and 16 remain included pending suitability review; replace excluded entries before claiming 200 usable examples. The six taxonomy examples are separate from these 200 records.
+
+**Three hard cases — student completion required**
+
+I have supplied labels for all 200 entries and reasons for the original 24. I still need to select three cases that I personally found difficult and document the alternative labels considered; no personal reflections have been invented for this draft.
 
 <!-- Any post that made you pause: what it was, which two labels it could have
      been, and what you chose. These are worth more than the easy 190. -->
@@ -184,7 +199,7 @@ I have supplied initial labels and reasons. I still need to select three cases t
 
 **Base model:** Pending confirmation from the project notebook; no training run has been supplied.
 
-**Settings:** Pending the actual run: epochs, learning rate, batch size, seed, and hardware.
+**Settings:** Epochs, learning rate, batch size, and seed are pending the actual run. The environment check reports Apple Silicon GPU (MPS) availability; actual training-device use must be confirmed in the notebook.
 
 **Anything I changed from the defaults, and why:** Pending the actual run. No changes are claimed.
 
@@ -207,7 +222,7 @@ I have supplied initial labels and reasons. I still need to select three cases t
 
 - *What I asked for:* Prepare `labels.csv` from the Reddit comments I pasted.
 - *What came back:* A CSV with `text,label,note`, containing 24 entries after excluding the apparent advertisement. Labels were left blank and notes set to `cold`. CSV parsing and exact text recovery were checked.
-- *What I changed:* I subsequently supplied all 24 labels and reasons. AI entered these choices without altering them. I still need to review excerpt suitability and confirm the independent labeling requirement.
+- *What I changed:* I subsequently supplied labels for all 200 entries. AI entered these choices without altering them. I still need to review excerpt suitability and confirm the independent labeling requirement.
 
 **Moment 2 — Preparing this README**
 
@@ -215,7 +230,7 @@ I have supplied initial labels and reasons. I still need to select three cases t
 - *What came back:* A draft overview, collection details, current counts, AI-use disclosure, and explicit pending fields for work that has not been completed.
 - *What I changed:* Pending my review. I must add my own difficult labeling decisions, actual training settings, results, and reflections before submission.
 
-**Pre-labelling disclosure:** The initial CSV had blank labels. I later supplied 24 labels, which AI entered unchanged. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. Blank labels do not erase that earlier guidance. I will not claim that AI supplied my independent decisions or that the independence requirement has been verified. Any later AI-assisted labeling must be disclosed and reviewed by me.
+**Pre-labelling disclosure:** The initial CSV had blank labels. I later supplied labels for all 200 entries, which AI entered unchanged. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. AI collection assistance and earlier classification guidance are disclosed separately from the labels I submitted. This record does not establish that the first-20 independence requirement has been met. The provenance of any labels generated with another tool still needs to be recorded accurately. Any later AI-assisted labeling must be disclosed and reviewed by me.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
@@ -258,11 +273,13 @@ I have supplied initial labels and reasons. I still need to select three cases t
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 in each seed | Pending | Pending | Pending | Pending |
+| 2. F1 — analysis | ≥ 0.65 in each seed | Pending | Pending | Pending | Pending |
+| 3. F1 — hot_take | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
+| 4. F1 — reaction | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
+| 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | Pending final review |
+
+Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not apply to that criterion. The prepared file currently meets the balance target, pending confirmation of the repository file and any suitability exclusions.
 
 ### Confusion matrix
 
@@ -376,11 +393,11 @@ I have supplied initial labels and reasons. I still need to select three cases t
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 in each seed | Pending | Pending | Pending | Pending |
+| 2. F1 — analysis | ≥ 0.65 in each seed | Pending | Pending | Pending | Pending |
+| 3. F1 — hot_take | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
+| 4. F1 — reaction | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
+| 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | Pending final review |
 
 **Did it help, and how do I know:**
 
