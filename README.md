@@ -356,7 +356,9 @@ Possible contributors include limited training examples, inconsistent boundaries
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Labeling provenance:** At my request, AI assigned all 30 labels in `my_staff_labels.csv` using `data/staff_taxonomy.md`, without access to the teaching fellow’s answer file. These are AI-generated labels, not my independently assigned answers. Therefore a later comparison measures AI–staff agreement and cannot establish my personal labeling consistency or satisfy an independent exercise without instructor approval. Reasons are recorded in `staff_labeling_notes.md`.
+
+**Agreement rate:** Pending the authentic `data/staff_labels.csv` supplied by the teaching fellow. No staff answers or agreement results have been fabricated.
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
