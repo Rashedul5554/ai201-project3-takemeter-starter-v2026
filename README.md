@@ -1,10 +1,10 @@
 # TakeMeter
 
-**Status:** A completed 200-entry dataset has been prepared with student-submitted labels. The most recent local check of the repository’s `labels.csv` still showed only 24 entries, so replacement with the completed file and a new count check are pending. Suitability review, labeling-workflow verification, training, and evaluation are also pending.
+**Status:** The repository contains 200 labeled candidate comments, with zero blank labels. Initial training and three-seed evaluation are complete. The notebook, `results.json`, `test_split.csv`, and `results_three_seeds_before.json` were committed and pushed. Final dataset suitability and labeling-workflow review, three personal hard cases, baseline comparison, staff agreement, and an improvement experiment remain unfinished.
 
-**Environment check:** The reported `python test.py` run passed 9 checks with 0 failures and 1 warning. Python 3.13.15 and the project virtual environment were active, required packages imported, and PyTorch reported Apple Silicon GPU (MPS) support. The baseline model has not yet been downloaded; the check estimates about 1.6 GB on its first run. Passing these checks confirms the environment, not the dataset or model performance.
+**Environment:** Python 3.13.15 in the project `.venv`; PyTorch 2.14.1; Apple Silicon GPU (MPS). The environment check passed 9 checks with 0 failures. The baseline command has been started and its first-run model download was in progress in the supplied screenshot; no completed baseline result was available when this README was updated.
 
-**Before the next commit:** Replace the older root `labels.csv` with the completed 200-entry file, confirm 200 rows and zero blank labels, and save this README. The counts below describe the prepared 200-entry file until that local replacement is verified.
+**Repository:** [TakeMeter project](https://github.com/Rashedul5554/ai201-project3-takemeter-starter-v2026)
 
 > ### 👋 Start here
 >
@@ -45,7 +45,7 @@
 
 ## What This Does
 
-TakeMeter is a planned text classifier for comments from Reddit’s r/technology community. It will sort comments into `analysis`, `hot_take`, and `reaction` based on the way they communicate. The goal is to distinguish supported explanations, strong judgments without substantial support, and immediate emotional responses. These labels describe communication style; they do not establish whether a claim is true.
+TakeMeter is a text classifier for comments from Reddit’s r/technology community. It classifies comments into `analysis`, `hot_take`, and `reaction` based on the way they communicate. The goal is to distinguish supported explanations, strong judgments without substantial support, and immediate emotional responses. These labels describe communication style; they do not establish whether a claim is true.
 
 
 
@@ -152,7 +152,7 @@ The initial 24 texts retain their pasted wording, Markdown, and internal newline
 
 **Labeling-workflow disclosure:** Earlier AI responses offered comment-specific guidance for the original collection. The first-20 independent-labeling requirement still needs verification; it cannot be inferred from a `cold` marker. The original 24 `note` values remain `cold` as previously saved; notes for the later 176 remain blank because the submission did not specify how those labels were produced. These markers need review under the actual course/notebook convention before training. If any submitted labels were generated or suggested by another AI tool, disclose that assistance and the student review performed.
 
-**Counts per label in the prepared 200-entry file:**
+**Counts per label in the repository’s validated 200-entry file:**
 
 | Label | Count | Share |
 |---|---|---|
@@ -197,15 +197,24 @@ I have supplied labels for all 200 entries and reasons for the original 24. I st
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:** Pending confirmation from the project notebook; no training run has been supplied.
+**Base model:** `distilbert-base-uncased`.
 
-**Settings:** Epochs, learning rate, batch size, and seed are pending the actual run. The environment check reports Apple Silicon GPU (MPS) availability; actual training-device use must be confirmed in the notebook.
+**Settings:** 3 epochs, learning rate `2e-5`, batch size 16, maximum input length 128 tokens. Initial seed 42; additional evaluation seeds 7 and 2024. Device: Apple Silicon GPU (MPS); PyTorch 2.14.1.
 
-**Anything I changed from the defaults, and why:** Pending the actual run. No changes are claimed.
+**Changes from defaults:** No changes to the listed starter training hyperparameters. The label list was set to `analysis`, `hot_take`, and `reaction`; student identification fields were filled in.
 
-**Split sizes:** Pending. Keep the completed dataset in one CSV and let the notebook create the train/validation/test splits. Record the actual split sizes and test counts per label after running it.
+**Seed-42 split sizes:** 139 training, 31 validation, 30 test entries. The notebook performed a stratified split with nominal 70/15/15 proportions; integer rounding produced the counts below.
 
+| Label | Train | Validation | Test |
+|---|---|---|---|
+| `analysis` | 57 | 13 | 13 |
+| `hot_take` | 43 | 10 | 9 |
+| `reaction` | 39 | 8 | 8 |
+| **Total** | **139** | **31** | **30** |
 
+**Initial held-out results:** Accuracy 0.633 (19/30 correct), macro F1 0.583. F1: `analysis` 0.703, `hot_take` 0.500, `reaction` 0.545. The most-confident third scored 0.800 accuracy versus 0.600 for the least-confident third, with only 10 examples in each group; this is limited evidence about confidence quality.
+
+Training and evaluation finished despite warnings about the notebook progress widget, newly initialized classification weights, and MPS pinned-memory support. The successful outputs are stored in `results.json` and `test_split.csv`. The test labels contain only 13, 9, and 8 examples respectively, so per-label scores have substantial sampling uncertainty.
 
 ---
 
@@ -228,7 +237,7 @@ I have supplied labels for all 200 entries and reasons for the original 24. I st
 
 - *What I asked for:* Prepare my README using the existing template and current project progress.
 - *What came back:* A draft overview, collection details, current counts, AI-use disclosure, and explicit pending fields for work that has not been completed.
-- *What I changed:* Pending my review. I must add my own difficult labeling decisions, actual training settings, results, and reflections before submission.
+- *What I changed:* Pending my review. I must add my own difficult labeling decisions, my own reflections and difficult labeling decisions before submission; verified training settings and results have now been added.
 
 **Pre-labelling disclosure:** The initial CSV had blank labels. I later supplied labels for all 200 entries, which AI entered unchanged. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. AI collection assistance and earlier classification guidance are disclosed separately from the labels I submitted. This record does not establish that the first-20 independence requirement has been met. The provenance of any labels generated with another tool still needs to be recorded accurately. Any later AI-assisted labeling must be disclosed and reviewed by me.
 
@@ -241,24 +250,24 @@ I have supplied labels for all 200 entries and reasons for the original 24. I st
 
 ## Baseline vs. Trained
 
-**Unit 6 status:** Pending. The sections below retain the submission template. No measurements, predictions, agreement decisions, or improvement results have been supplied. Write the prediction before viewing results.
+**Unit 6 status:** Three-seed evaluation and the seed-42 confusion matrix are complete. Baseline results, staff agreement, and an improvement run are pending. No student prediction has been supplied; do not reconstruct a prediction after seeing results.
 
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `analysis` |  |  |  |
-| F1 — `hot_take` |  |  |  |
-| F1 — `reaction` |  |  |  |
+| Overall accuracy | Pending | 0.633 | Pending |
+| Macro F1 | Pending | 0.583 | Pending |
+| F1 — `analysis` | Pending | 0.703 | Pending |
+| F1 — `hot_take` | Pending | 0.500 | Pending |
+| F1 — `reaction` | Pending | 0.545 | Pending |
 
-**What I predicted before I looked:**
+**What I predicted before I looked:** No prediction has been provided for this record. If one was recorded before viewing results, insert that original prediction; otherwise disclose that it was not recorded.
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
-**What the gap actually means:**
+**What the gap actually means:** Pending the baseline evaluation on the same 30 held-out entries.
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 
@@ -273,26 +282,28 @@ I have supplied labels for all 200 entries and reasons for the original 24. I st
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1. Overall accuracy | ≥ 0.70 in each seed | Pending | Pending | Pending | Pending |
-| 2. F1 — analysis | ≥ 0.65 in each seed | Pending | Pending | Pending | Pending |
-| 3. F1 — hot_take | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
-| 4. F1 — reaction | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
-| 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | Pending final review |
+| 1. Overall accuracy | ≥ 0.70 in each seed | 0.633 | 0.433 | 0.533 | MISSED |
+| 2. F1 — analysis | ≥ 0.65 in each seed | 0.703 | 0.605 | 0.625 | MISSED |
+| 3. F1 — hot_take | ≥ 0.60 in each seed | 0.500 | 0.000 | 0.182 | MISSED |
+| 4. F1 — reaction | ≥ 0.60 in each seed | 0.545 | 0.000 | 0.588 | MISSED |
+| 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | MET on current dataset |
 
-Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not apply to that criterion. The prepared file currently meets the balance target, pending confirmation of the repository file and any suitability exclusions.
+Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not apply to that criterion. The validated repository file meets the balance target: 41.5% analysis, 31.0% hot_take, and 27.5% reaction. Recalculate if the dataset changes.
 
-### Confusion matrix
+Accuracy ranges from 0.433 to 0.633, a spread of 0.200 (20 percentage points). Macro F1 ranges from 0.202 to 0.583. The results are sensitive to the split and initialization; these runs alone do not identify the cause.
+
+### Confusion matrix — seed 42, 30 held-out entries
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
 | true \ predicted | `analysis` | `hot_take` | `reaction` |
 |---|---|---|---|
-| `analysis` |  |  |  |
-| `hot_take` |  |  |  |
-| `reaction` |  |  |  |
+| `analysis` | 13 | 0 | 0 |
+| `hot_take` | 6 | 3 | 0 |
+| `reaction` | 5 | 0 | 3 |
 
-**My biggest off-diagonal number, and what it means:**
+**My biggest off-diagonal number, and what it means:** Six true `hot_take` comments were predicted as `analysis`, while zero true `analysis` comments were predicted as `hot_take`. Five true reactions were also called analysis. In this run, 24 of 30 predictions were analysis, showing overprediction of that label.
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
@@ -308,13 +319,21 @@ Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not 
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.70 in every seed | MISSED | Minimum observed value: 0.433; not all seeds reach the target. |
+| 2 | F1 — analysis | ≥ 0.65 in every seed | MISSED | Minimum observed value: 0.605; not all seeds reach the target. |
+| 3 | F1 — hot_take | ≥ 0.60 in every seed | MISSED | Minimum observed value: 0.000; not all seeds reach the target. |
+| 4 | F1 — reaction | ≥ 0.60 in every seed | MISSED | Minimum observed value: 0.000; not all seeds reach the target. |
+| 5 | Full-dataset balance | Each label 20%–45% | MET | Shares are 41.5%, 31.0%, and 27.5% in the current 200 entries. |
 
-**Diagnoses**
+**Diagnoses — preliminary; staff agreement evidence pending**
+
+- **Accuracy:** All three runs are below 0.70. Accuracy varies by 20 percentage points. This establishes unstable measured performance, not a proven cause.
+- **Analysis F1:** Seed 42 reaches 0.65, but seeds 7 and 2024 do not. In seed 7, every test comment is predicted as analysis; recall is 1.0 but precision is only 0.433.
+- **Hot-take F1:** All three runs miss 0.60. Seed 42 sends six of nine hot takes to analysis; seed 7 finds none. The model is not reliably separating supported explanation from unsupported judgment.
+- **Reaction F1:** All three runs miss 0.60. Seed 42 sends five of eight reactions to analysis; seed 7 finds none. The small test support also limits precision of this measurement.
+
+Possible contributors include limited training examples, inconsistent boundaries, short training, and correlated comments from the same threads appearing across row-level splits. None has been isolated experimentally. The staff agreement exercise and a review of training/validation behavior are needed before claiming a labeling problem or choosing an improvement. Preserve the current targets and before-results.
+
 
 <!-- For each miss: the cause, and how you know. The four common causes are:
      too few examples for a label, a boundary you applied inconsistently, a
@@ -385,9 +404,9 @@ Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not 
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** Pending; no improvement experiment has been completed.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** Pending the agreement exercise and evidence-based selection of one change.
 
 ### Run Log — After
 
@@ -399,7 +418,7 @@ Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not 
 | 4. F1 — reaction | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
 | 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | Pending final review |
 
-**Did it help, and how do I know:**
+**Did it help, and how do I know:** Pending an after-run. Do not overwrite `results_three_seeds_before.json`; use `RUN_LABEL = "after"` for the improvement experiment.
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
@@ -410,12 +429,14 @@ Criterion 5 is evaluated once on the full reviewed dataset; seed columns do not 
 
 ## What's Still Broken
 
+The initial runs miss all four performance criteria across the required seeds. They overpredict analysis, and seed 7 fails to predict the other labels entirely. Baseline comparison, staff agreement, and an improvement experiment are still pending; no claim is made that the current model is ready for use.
+
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
 
 
 **The gap between what I meant my labels to capture and what the model
-learned:**
+learned:** The intended labels separate supported explanations, unsupported judgments, and immediate feelings. The seed-42 matrix instead shows that many hot takes and reactions are absorbed into analysis, so the intended boundaries have not been learned reliably.
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
 
@@ -431,7 +452,7 @@ learned:**
        [ ] All five unit 5 sections have real content
        [ ] Label Taxonomy includes the decision rule for your hardest boundary
        [ ] The Dataset includes three hard cases
-       [ ] results.json and test_split.csv committed (the notebook does this)
+       [ ] results.json and test_split.csv committed manually after the notebook writes them
        [ ] At least four new commits
        [ ] Repository URL submitted — WRITE IT DOWN
 
