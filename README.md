@@ -230,6 +230,21 @@ These cases use previously submitted labels and reasons. AI selected the example
 
 Training and evaluation finished despite warnings about the notebook progress widget, newly initialized classification weights, and MPS pinned-memory support. The successful outputs are stored in `results.json` and `test_split.csv`. The test labels contain only 13, 9, and 8 examples respectively, so per-label scores have substantial sampling uncertainty.
 
+### Planned Unit 5 bonus: second training run
+
+**Status:** Declared before implementation; the bonus run has not yet been performed. This declaration will be committed before changing the training configuration.
+
+**Single change:** Increase `EPOCHS` from 3 to 5 to test whether additional training helps the classifier learn the label boundaries. Improvement is a hypothesis, not a promised result.
+
+**Controls:** Keep the same 200-comment dataset and row order, seed 42, `distilbert-base-uncased`, learning rate `2e-5`, batch size 16, maximum input length 128 tokens, label mapping, split procedure, and Apple Silicon MPS device. Verify that the training, validation, and test memberships match the original seed-42 split. No dataset or label edits are part of this experiment. Increasing epochs necessarily increases the number of optimizer steps under the existing training procedure.
+
+**Evidence preservation:** Preserve the original `results.json` and `test_split.csv` before running. Save the bonus output separately as `results_bonus_epochs5.json` and retain the executable notebook or script configuration that produced it. Preserve the existing Unit 6 before-results as well.
+
+**Planned comparison:** Report original and bonus accuracy, macro F1, and F1 for each label, with differences calculated from unrounded results. Report the actual outcome even if performance worsens. Original scores are accuracy 0.633, macro F1 0.583, analysis F1 0.703, hot_take F1 0.500, and reaction F1 0.545.
+
+**Interpretation:** This is one predeclared comparison, not repeated tuning against the test set. The held-out set has already been evaluated, so disclose that fact and do not present the bonus evaluation as a new untouched test. Do not claim the bonus point until the run, comparison, and repository evidence are complete; grading is determined by the instructor.
+
+
 ---
 
 ## How I Used AI
