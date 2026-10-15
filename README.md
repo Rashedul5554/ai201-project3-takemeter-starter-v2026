@@ -1,6 +1,6 @@
 # TakeMeter
 
-**Status:** Work in progress. The prepared dataset contains 24 unlabeled entries. Independent labeling, further collection, training, and evaluation are pending.
+**Status:** Work in progress. The dataset contains 24 entries with student-submitted labels. Label review, confirmation of the independent-labeling requirement, further collection, training, and evaluation are pending.
 
 > ### 👋 Start here
 >
@@ -142,24 +142,15 @@ If a comment fits none of these definitions, set it aside for review rather than
 
 The CSV preserves the comment bodies as pasted, including wording, punctuation, links, Markdown, and internal line breaks. Post headings, comment-number markers, and separator whitespace were removed. These texts were recovered from the conversation rather than independently verified on Reddit. Two apparent article excerpts remain included for suitability review: data row 2 (ICE relationships) and data row 16 (Ukrainian soldiers/Starlink). The ICE excerpt starts with “o identify” exactly as pasted. No missing text was reconstructed.
 
-**How I labelled them:** Labeling is pending. Every `label` field is blank and every `note` field contains `cold`. The `cold` marker records the intended labeling workflow; it does not mean independent labeling has already happened. I must assign the first 20 labels myself before training, using the taxonomy above. The final four entries are also unlabeled.
+**How I labelled them:** I supplied a label and reasoning for each of the 24 entries. AI transferred my labels into the CSV without changing my choices or the original full comment text. All notes remain `cold` from the initial preparation; this marker alone does not establish independent labeling. Earlier AI responses provided comment-specific guidance, so compliance with the first-20 independence requirement still needs confirmation. No labels have been independently validated as correct.
 
-Earlier AI responses offered comment-specific classification guidance, although they did not fill the CSV labels. This assistance is disclosed below. I should check the course’s independence requirement before claiming that examples already discussed with AI qualify as cold labels; fresh comments without AI guidance may be needed for the independent set.
+**Current counts:** `analysis`: 8 (33.33%); `hot_take`: 11 (45.83%); `reaction`: 5 (20.83%). Total: 24 labeled entries. The current `hot_take` share exceeds the 45% maximum in the planned acceptance criteria. Do not change labels merely to meet a quota; collect additional appropriate examples and apply the taxonomy consistently.
 
-**Counts per label:**
-
-| Label | Assigned count | Share of labeled entries |
-|---|---|---|
-| `analysis` | 0 | Not yet applicable |
-| `hot_take` | 0 | Not yet applicable |
-| `reaction` | 0 | Not yet applicable |
-| **Total labeled** | **0** | **Not yet applicable** |
-
-There are **24 unlabeled entries**. Label balance cannot be evaluated yet. My collection target is 200 usable labeled comments; the supplied template lists 150 as its minimum. At 24 entries, the dataset is below both. Additional collection is still required, with more needed if excerpts or other unsuitable entries are excluded. The six taxonomy examples above are separate from these 24 entries and are not included in this count.
+The collection target remains 200 usable labeled comments; the supplied template lists 150 as its minimum. Both apparent article excerpts remain included pending suitability review. The six taxonomy examples are separate from these 24 entries.
 
 **Three hard cases**
 
-Pending my own labeling decisions. I will complete the three records below after assigning labels; no decisions or personal reflections have been invented for this draft.
+I have supplied initial labels and reasons. I still need to select three cases that I personally found difficult and document the alternative labels considered; no personal reflections have been invented for this draft.
 
 <!-- Any post that made you pause: what it was, which two labels it could have
      been, and what you chose. These are worth more than the easy 190. -->
@@ -216,7 +207,7 @@ Pending my own labeling decisions. I will complete the three records below after
 
 - *What I asked for:* Prepare `labels.csv` from the Reddit comments I pasted.
 - *What came back:* A CSV with `text,label,note`, containing 24 entries after excluding the apparent advertisement. Labels were left blank and notes set to `cold`. CSV parsing and exact text recovery were checked.
-- *What I changed:* No student edits or completed labels have been reported yet. I still need to review excerpt suitability and complete the independent labeling requirement.
+- *What I changed:* I subsequently supplied all 24 labels and reasons. AI entered these choices without altering them. I still need to review excerpt suitability and confirm the independent labeling requirement.
 
 **Moment 2 — Preparing this README**
 
@@ -224,7 +215,7 @@ Pending my own labeling decisions. I will complete the three records below after
 - *What came back:* A draft overview, collection details, current counts, AI-use disclosure, and explicit pending fields for work that has not been completed.
 - *What I changed:* Pending my review. I must add my own difficult labeling decisions, actual training settings, results, and reflections before submission.
 
-**Pre-labelling disclosure:** AI did not assign labels in the prepared CSV. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. Blank labels do not erase that earlier guidance. I will not claim that AI supplied my independent decisions or that those decisions are complete. Any later AI-assisted labeling must be disclosed and reviewed by me.
+**Pre-labelling disclosure:** The initial CSV had blank labels. I later supplied 24 labels, which AI entered unchanged. Earlier conversation responses provided comment-specific classification hints and explanations of the taxonomy. AI also helped prepare the taxonomy materials, dataset file, and README draft. Blank labels do not erase that earlier guidance. I will not claim that AI supplied my independent decisions or that the independence requirement has been verified. Any later AI-assisted labeling must be disclosed and reviewed by me.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
