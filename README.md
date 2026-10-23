@@ -4,7 +4,7 @@
 
 **Environment:** Python 3.13.15 in the project `.venv`; PyTorch 2.14.1; Apple Silicon GPU (MPS). The reported environment check passed 9 checks with 0 failures. The saved notebook has no error outputs.
 
-**Scope:** This repository contains the Unit 5 build and ongoing Unit 6 testing. The baseline comparison, three-seed before-results, and staff agreement script run are complete. The agreement used AI-generated comparison labels; acceptance of that workflow for the independent-labeling exercise remains unresolved. Final diagnoses and the after-log remain incomplete. An earlier three-to-five-epoch experiment is documented below with its Unit 5 history; acceptance of its reuse for Unit 6 is not confirmed.
+**Scope:** This repository contains the Unit 5 build and ongoing Unit 6 testing. The baseline comparison, three-seed before-results, and staff agreement script run are complete. The agreement used AI-generated comparison labels; acceptance of that workflow for the independent-labeling exercise remains unresolved. Final diagnoses remain incomplete; the earlier five-epoch after-log is now verified. An earlier three-to-five-epoch experiment is documented below with its Unit 5 history; acceptance of its reuse for Unit 6 is not confirmed.
 
 **Repository:** [TakeMeter project](https://github.com/Rashedul5554/ai201-project3-takemeter-starter-v2026)
 
@@ -324,7 +324,7 @@ The staff answer key, agreement report, baseline comparison, three-seed analysis
 
 ## Baseline vs. Trained
 
-**Unit 6 status:** The baseline comparison, three-seed before-evaluation, seed-42 confusion matrix, and agreement script run are complete. The agreement run matched all 30 staff labels using AI-generated comparison labels; it does not establish independent student labeling. Final diagnoses, an accepted resolution of the independent-labeling exercise, and a verified after-log remain pending. The earlier three-to-five-epoch experiment is documented below; its reuse for Unit 6 is not confirmed. No advance student prediction is recorded; none has been reconstructed after seeing the results.
+**Unit 6 status:** The baseline comparison, three-seed before-evaluation, seed-42 confusion matrix, and agreement script run are complete. The agreement run matched all 30 staff labels using AI-generated comparison labels; it does not establish independent student labeling. Final diagnoses, an accepted resolution of the independent-labeling exercise, remain pending; the earlier five-epoch after-log is verified. The earlier three-to-five-epoch experiment is documented below; its reuse for Unit 6 is not confirmed. No advance student prediction is recorded; none has been reconstructed after seeing the results.
 
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
@@ -451,19 +451,29 @@ python agreement.py --staff-labels data/data_staff_labels.csv
 
 **Experiment history:** This experiment was performed earlier as the Unit 5 bonus and is reported here transparently. The original results are preserved in `results_three_seeds_before.json`, and the five-epoch results are preserved in `results_three_seeds_bonus_epochs5.json`. It is not a newly performed Unit 6 experiment. Acceptance of reusing this earlier experiment for Unit 6 has not been confirmed with the teaching fellow.
 
-**Evidence and remaining work:** Preserve both existing JSON files unchanged. Verify the complete three-seed comparison before filling the after-log and final interpretation. The required `results_three_seeds_after.json` has not yet been supplied or verified; no empty, renamed, or fabricated result file is presented as a new run.
+**Evidence and remaining work:** Both existing JSON files are preserved unchanged. The complete three-seed score comparison is verified in the after-log below. The required `results_three_seeds_after.json` has not yet been supplied or verified; no empty, renamed, or fabricated result file is presented as a new run.
 
-### Run Log — After
+### Run Log — After: earlier five-epoch experiment
+
+These values were checked against `results_three_seeds_bonus_epochs5.json` and compared with `results_three_seeds_before.json`. Both files record seeds 42, 7, and 2024, 30 test examples per seed, and MPS. The JSON summaries do not contain full training settings, dataset hashes, or test-post membership; the controlled-change description relies on the documented experiment and retained notebook, not on these summaries alone.
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1. Overall accuracy | ≥ 0.70 in each seed | Pending | Pending | Pending | Pending |
-| 2. F1 — analysis | ≥ 0.65 in each seed | Pending | Pending | Pending | Pending |
-| 3. F1 — hot_take | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
-| 4. F1 — reaction | ≥ 0.60 in each seed | Pending | Pending | Pending | Pending |
-| 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | Pending final review |
+| 1. Overall accuracy | ≥ 0.70 in each seed | 0.767 | 0.600 | 0.567 | MISSED |
+| 2. F1 — analysis | ≥ 0.65 in each seed | 0.812 | 0.722 | 0.690 | MET |
+| 3. F1 — hot_take | ≥ 0.60 in each seed | 0.750 | 0.333 | 0.400 | MISSED |
+| 4. F1 — reaction | ≥ 0.60 in each seed | 0.667 | 0.500 | 0.500 | MISSED |
+| 5. Full-dataset balance | Each label 20%–45%; checked once | N/A | N/A | N/A | MET on unchanged dataset |
 
-**Did it help, and how do I know:** The earlier seed-42 comparison improved accuracy from 0.633 to 0.767 and macro F1 from 0.583 to 0.743. The complete three-seed after-log and criterion verdicts still require verification against both saved result files; one improved seed does not establish that a threshold holds across all three. The notebook output naming was fixed and committed as `3be0a45`: Section 6 uses `RUN_LABEL = "after"`, writes `results_three_seeds_after.json`, and stops if the output already exists. This code fix does not itself constitute a training improvement or a completed after-run. Preserve the before-results and earlier bonus files.
+Criterion 5 uses the previously verified counts of 83 analysis, 62 hot_take, and 55 reaction examples, conditional on retaining that same dataset. The result JSON files do not independently verify dataset counts.
+
+**Did it help, and how do I know:** Accuracy improved in all three seeds: 0.633 to 0.767 for seed 42 (+13.3 percentage points), 0.433 to 0.600 for seed 7 (+16.7 points), and 0.533 to 0.567 for seed 2024 (+3.3 points). Mean accuracy across the three runs rose from 0.533 to 0.644, and mean macro F1 rose from 0.416 to 0.597. These are descriptive averages across overlapping splits, not a pooled independent test or the basis for the verdicts.
+
+Analysis F1 now reaches 0.65 in every seed, changing that criterion from MISSED to MET. Overall accuracy, hot-take F1, and reaction F1 still miss their targets because each threshold must hold in every seed. Reaction F1 actually fell from 0.588 to 0.500 for seed 2024, so the improvement was not uniform across labels. Accuracy still spans 20 percentage points across seeds, from 0.567 to 0.767; the experiment did not remove instability.
+
+The comparison supports additional training as helpful under the documented setup, but does not prove that all failures were caused by too few epochs or that the labels are consistent. This is the earlier Unit 5 experiment, not a newly performed Unit 6 run; acceptance of its reuse remains unconfirmed. No `results_three_seeds_after.json` has been generated by this review.
+
+**Notebook output fix:** Section 6 now uses `RUN_LABEL = "after"`, constructs `results_three_seeds_after.json`, and stops if that output already exists. The code fix was committed as `3be0a45`; it does not itself constitute a completed training run. Preserve both existing result files.
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
@@ -474,7 +484,7 @@ python agreement.py --staff-labels data/data_staff_labels.csv
 
 ## What's Still Broken
 
-The initial runs miss all four performance criteria across the required seeds. They overpredict analysis, and seed 7 fails to predict the other labels entirely. Baseline comparison and the AI–staff agreement run are complete. Acceptance of the independent-labeling workflow and reuse of the earlier experiment, final evidence-based diagnoses, and a verified three-seed after-log remain pending; no claim is made that the current model is ready for use.
+The initial runs miss all four performance criteria across the required seeds. In the earlier five-epoch experiment, analysis F1 meets its target across all seeds, while accuracy, hot-take F1, and reaction F1 remain below target in at least one seed. They overpredict analysis, and seed 7 fails to predict the other labels entirely. Baseline comparison and the AI–staff agreement run are complete. Acceptance of the independent-labeling workflow and reuse of the earlier experiment, and final evidence-based diagnoses remain pending; the earlier five-epoch after-log is now verified; no claim is made that the current model is ready for use.
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
